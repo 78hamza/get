@@ -1,0 +1,11 @@
+total 52K
+-rw-rw-r-- 1 hamza-bouzian hamza-bouzian    0 Nov 18 09:26 file.txt
+-rw-rw-r-- 1 hamza-bouzian hamza-bouzian 1.9K Nov 18 01:05 get_next_line.c
+-rw-rw-r-- 1 hamza-bouzian hamza-bouzian  349 Nov 17 23:59 get_next_line.h
+-rw-rw-r-- 1 hamza-bouzian hamza-bouzian 3.2K Nov 18 01:05 get_next_line.o
+-rw-rw-r-- 1 hamza-bouzian hamza-bouzian 1.3K Nov 18 01:05 get_next_line_utils.c
+-rw-rw-r-- 1 hamza-bouzian hamza-bouzian 2.4K Nov 18 01:05 get_next_line_utils.o
+-rw-rw-r-- 1 hamza-bouzian hamza-bouzian  242 Nov 17 23:58 main.c
+-rw-rw-r-- 1 hamza-bouzian hamza-bouzian 1.7K Nov 18 01:05 main.o
+-rw-rw-r-- 1 hamza-bouzian hamza-bouzian  285 Nov 18 01:04 Makefile
+-rwxrwxr-x 1 hamza-bouzian hamza-bouzian  17K Nov 18 01:05 program
