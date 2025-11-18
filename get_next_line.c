@@ -57,6 +57,7 @@ char    *extract_pocket(char *pocket)
 char    *read_and_join(int fd, char *pocket)
 {
     char    *buffer;
+	char	*tmp;
     ssize_t bytes;
 
     buffer = malloc(BUFFER_SIZE + 1);
@@ -72,7 +73,9 @@ char    *read_and_join(int fd, char *pocket)
             return (NULL);
         }
         buffer[bytes] = '\0';
-        pocket = ft_strjoin(pocket, buffer);
+		tmp = ft_strjoin(pocket, buffer);
+        free(pocket);
+		pocket = tmp;
     }
     free(buffer);
     return (pocket);
