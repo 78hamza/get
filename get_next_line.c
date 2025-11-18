@@ -32,7 +32,7 @@ char    *extract_pocket(char *pocket)
     char    *extracted_pocket;
 
     i = 0;
-    if (!pocket[i])
+    if (!pocket || pocket[i] == '\0')
         return (NULL);
     while (pocket[i] && pocket[i] != '\n')
         i++;
@@ -70,6 +70,7 @@ char    *read_and_join(int fd, char *pocket)
         if (bytes == -1)
         {
             free(buffer);
+            free(pocket);
             return (NULL);
         }
         buffer[bytes] = '\0';
@@ -92,6 +93,12 @@ char    *get_next_line(int fd)
     if (!pocket)
         return (NULL);
     line = extract_pocket(pocket);
+    if (!line)
+    {
+        free(pocket);
+        pocket = NULL;
+        return (NULL);
+    }
     pocket = update_pocket(pocket);
     return (line);
 }
