@@ -85,6 +85,7 @@ char    *get_next_line(int fd)
 {
     static char *pocket;
     char    *line;
+	char	*tmp;
 
     if (fd < 0 || BUFFER_SIZE <= 0)
         return (NULL);
@@ -92,6 +93,8 @@ char    *get_next_line(int fd)
     if (!pocket)
         return (NULL);
     line = extract_pocket(pocket);
-    pocket = update_pocket(pocket);
+    tmp = update_pocket(pocket);
+	free(pocket);
+	pocket = tmp;
     return (line);
 }
