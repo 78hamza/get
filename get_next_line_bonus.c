@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbouzian <hbouzian@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/18 15:39:19 by hbouzian          #+#    #+#             */
-/*   Updated: 2025/11/18 15:39:20 by hbouzian         ###   ########.fr       */
+/*   Created: 2025/11/18 15:39:32 by hbouzian          #+#    #+#             */
+/*   Updated: 2025/11/18 15:40:30 by hbouzian         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*update_pocket(char *pocket)
 {
@@ -28,7 +28,10 @@ char	*update_pocket(char *pocket)
 	}
 	updated_pocket = malloc(ft_strlen(pocket) - i + 1);
 	if (!updated_pocket)
+	{
+		free(pocket);
 		return (NULL);
+	}
 	i++;
 	j = 0;
 	while (pocket[i])
@@ -93,21 +96,21 @@ char	*read_and_join(int fd, char *pocket)
 
 char	*get_next_line(int fd)
 {
-	static char	*pocket;
+	static char	*pocket[FD_MAX];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd >= FD_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
-	pocket = read_and_join(fd, pocket);
-	if (!pocket)
+	pocket[fd] = read_and_join(fd, pocket[fd]);
+	if (!pocket[fd])
 		return (NULL);
-	line = extract_pocket(pocket);
+	line = extract_pocket(pocket[fd]);
 	if (!line)
 	{
-		free(pocket);
-		pocket = NULL;
+		free(pocket[fd]);
+		pocket[fd] = NULL;
 		return (NULL);
 	}
-	pocket = update_pocket(pocket);
+	pocket[fd] = update_pocket(pocket[fd]);
 	return (line);
 }
